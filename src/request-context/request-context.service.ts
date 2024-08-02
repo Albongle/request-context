@@ -3,17 +3,9 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class RequestContextService {
   private keys: Map<string, any>;
-  private static context: RequestContextService;
 
   constructor() {
-    if (RequestContextService.context) {
-      return RequestContextService.context;
-    }
     this.keys = new Map<string, any>();
-    RequestContextService.context = this;
-    Object.freeze(RequestContextService.context);
-
-    return RequestContextService.context;
   }
 
   public setKey(key: string, value: any) {
